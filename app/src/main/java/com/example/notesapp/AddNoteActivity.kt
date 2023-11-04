@@ -100,7 +100,8 @@ class AddNoteActivity : AppCompatActivity() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == EXTERNAL_STORAGE_REQUSET_CODE && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+        if (requestCode == EXTERNAL_STORAGE_REQUSET_CODE && grantResults.isNotEmpty() && grantResults[0] ==
+            PackageManager.PERMISSION_GRANTED ) {
             // Permission is granted, launch the gallery picker.
             openGallery()
         } else {
