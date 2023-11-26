@@ -44,7 +44,7 @@ class NotesFragment : Fragment() {
 //        var notesRepository = NotesRepository(notesDao)
 
 
-        // here  view model is not dependent on any objects its getting all the objects read-mad from outside
+        // here  view model is not dependent on any objects its getting all the objects read-made from outside
         // this is know as manual dependency , manually adding dependency
 
         // replacing it with dagger dependency
