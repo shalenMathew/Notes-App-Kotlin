@@ -6,8 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.notesapp.repository.NotesRepository
 import com.example.notesapp.room.NotesDataBase
 import java.lang.IllegalArgumentException
+import javax.inject.Inject
 
-class NotesViewModelFactory(private val application: Application, private var notesRepository: NotesRepository)
+class NotesViewModelFactory @Inject constructor(private val application: Application, private var notesRepository: NotesRepository)
     :ViewModelProvider.Factory
 
 {

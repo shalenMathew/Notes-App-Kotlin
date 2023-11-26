@@ -2,16 +2,14 @@ package com.example.notesapp.fragments
 
 import android.app.Application
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.notesapp.R
 import com.example.notesapp.adapter.CustomAdapter
-import com.example.notesapp.databinding.FragmentNotesBinding
 import com.example.notesapp.databinding.FragmentStarredBinding
 import com.example.notesapp.repository.NotesRepository
 import com.example.notesapp.room.NotesDataBase
@@ -29,7 +27,7 @@ class StarredFragment : Fragment() {
 
     lateinit var notesViewModelFactory: NotesViewModelFactory
 
-  lateinit  var starredList:ArrayList<NotesModel>
+  private lateinit  var starredList:ArrayList<NotesModel>
 
 
     override fun onCreateView(
@@ -49,35 +47,28 @@ class StarredFragment : Fragment() {
         notesViewModelFactory = NotesViewModelFactory(application,notesRepository)
         notesViewModel = ViewModelProvider(this,notesViewModelFactory).get(NotesViewModel::class.java)
 
+        observeList()
+
         binding.starredRv.layoutManager = LinearLayoutManager(context)
         customAdapter = CustomAdapter(requireContext(),notesViewModel)
         binding.starredRv.adapter=customAdapter
-
-
-        observeList()
 
         return  binding.root
     }
 
     private fun observeList() {
 
-        notesViewModel.getAllNotes().observe(viewLifecycleOwner){
-
-            notesList ->
+        notesViewModel.getAllNotes().observe(viewLifecycleOwner){ notesList ->
 
             starredList.clear()
 
             for(notesModelObj in notesList){
-
-                if(notesModelObj.isStarred!!){
+//
+                if(notesModelObj.isStarred==true){
                     starredList.add(notesModelObj)
-                }else{
-
                 }
             }
-
-
-            customAdapter.setNotes(starredList)
+            customAdapter.setNotes2(starredList)
         }
 
     }

@@ -32,6 +32,11 @@ class CustomAdapter(private val context: Context,private val notesViewModel: Not
         notifyDataSetChanged() // Notify the adapter that the data has changed
     }
 
+    fun setNotes2(newData:ArrayList<NotesModel>){
+        list = newData
+        notifyDataSetChanged() // Notify the adapter that the data has changed
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
@@ -69,7 +74,6 @@ class CustomAdapter(private val context: Context,private val notesViewModel: Not
 
                  notesViewModel.updateNote(notesModel)
 
-                 Toast.makeText(context, "Title ${notesModel.title} , star = ${notesModel.isStarred}", Toast.LENGTH_SHORT).show()
                  // Update the star icon drawable based on the updated starSelected value
                  if (starSelected) {
                      viewHolderWithImg.binding.cardItemImgStar.setImageResource(R.drawable.star)
@@ -94,7 +98,6 @@ class CustomAdapter(private val context: Context,private val notesViewModel: Not
 
                  notesViewModel.updateNote(notesModel)
 
-                 Toast.makeText(context, "Title ${notesModel.title} , star = ${notesModel.isStarred}", Toast.LENGTH_SHORT).show()
                  // Update the star icon drawable based on the updated starSelected value
                  if (starSelected) {
                      viewHolderWithoutImg.binding.cardItemStar.setImageResource(R.drawable.star)

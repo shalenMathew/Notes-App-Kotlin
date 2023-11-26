@@ -11,19 +11,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notesapp.R
 import com.example.notesapp.adapter.CustomAdapter
 import com.example.notesapp.databinding.FragmentNotesBinding
+import com.example.notesapp.di.MyApplication
 import com.example.notesapp.repository.NotesRepository
 import com.example.notesapp.room.NotesDataBase
 import com.example.notesapp.viewmodel.NotesViewModel
 import com.example.notesapp.viewmodel.NotesViewModelFactory
-
+import javax.inject.Inject
 
 
 class NotesFragment : Fragment() {
 
-    lateinit var binding: FragmentNotesBinding
-    lateinit var customAdapter: CustomAdapter
-    lateinit var notesViewModel: NotesViewModel
+    private lateinit var binding: FragmentNotesBinding
+    private lateinit var customAdapter: CustomAdapter
+    private lateinit var notesViewModel: NotesViewModel
 
+
+    @Inject
     lateinit var notesViewModelFactory: NotesViewModelFactory
 
 
@@ -34,20 +37,28 @@ class NotesFragment : Fragment() {
 
         binding = FragmentNotesBinding.inflate(inflater,container,false)
 
-        val application = requireContext().applicationContext as Application
 
-        var notesDatabase = NotesDataBase.getDataBaseInstance(requireContext())
-        var notesDao  = notesDatabase.getNoteDao()
-        var notesRepository = NotesRepository(notesDao)
 
-        notesViewModelFactory = NotesViewModelFactory(application,notesRepository)
+//        var notesDatabase = NotesDataBase.getDataBaseInstance(requireContext())
+//        var notesDao  = notesDatabase.getNoteDao()
+//        var notesRepository = NotesRepository(notesDao)
+
+
+        // here  view model is not dependent on any objects its getting all the objects read-mad from outside
+        // this is know as manual dependency , manually adding dependency
+
+        // replacing it with dagger dependency
+
+//        notesViewModelFactory = NotesViewModelFactory(application,notesRepository)
+
+        val application = requireActivity().application as MyApplication
+
+        application.appComponent.inject(this)
+
         notesViewModel = ViewModelProvider(this,notesViewModelFactory).get(NotesViewModel::class.java)
-
 
         configureRecycleView()
         observeData()
-
-
 
         return binding.root
     }

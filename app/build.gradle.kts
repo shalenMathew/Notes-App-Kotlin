@@ -4,6 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
     id("com.google.devtools.ksp")
+    id ("kotlin-kapt")
 
 }
 
@@ -74,5 +75,8 @@ dependencies {
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
 
+
+    implementation ("com.google.dagger:dagger:2.47")
+    kapt ("com.google.dagger:dagger-compiler:2.47")
 
 }
