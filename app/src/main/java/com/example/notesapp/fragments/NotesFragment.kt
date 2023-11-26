@@ -20,8 +20,6 @@ import com.example.notesapp.viewmodel.NotesViewModelFactory
 
 class NotesFragment : Fragment() {
 
-    // commit
-
     lateinit var binding: FragmentNotesBinding
     lateinit var customAdapter: CustomAdapter
     lateinit var notesViewModel: NotesViewModel
@@ -48,6 +46,8 @@ class NotesFragment : Fragment() {
 
         configureRecycleView()
         observeData()
+
+
 
         return binding.root
     }
