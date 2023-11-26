@@ -1,5 +1,6 @@
 # Notes_App_Kotlin
 a simple notes app
+<br>
 
 Features:
 <p>1.CRUD functionality</p>
