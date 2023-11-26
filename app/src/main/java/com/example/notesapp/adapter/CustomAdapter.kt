@@ -169,6 +169,9 @@ class CustomAdapter(private val context: Context,private val notesViewModel: Not
         init {
             binding= CardItemWithImgBinding.bind(itemView)
         }
+
+
+
     }
 
     override fun getItemViewType(position: Int): Int {
