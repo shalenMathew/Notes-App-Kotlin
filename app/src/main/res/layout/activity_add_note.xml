@@ -54,7 +54,7 @@
         android:layout_marginEnd="@dimen/_20mdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/tick"
+        app:srcCompat="@drawable/right"
         android:layout_marginBottom="@dimen/_15mdp"
         />
 
@@ -67,7 +67,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/activity_add_note_true"
         app:layout_constraintTop_toTopOf="@+id/activity_add_note_true"
-        app:srcCompat="@drawable/tick_2" />
+        app:srcCompat="@drawable/wrong" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
