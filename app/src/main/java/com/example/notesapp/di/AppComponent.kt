@@ -6,13 +6,16 @@ import com.example.notesapp.fragments.StarredFragment
 import dagger.Component
 import javax.inject.Singleton
 
-@Singleton
-@Component(modules = [AppModule::class])
-interface AppComponent {
-    fun inject(notesFragment: NotesFragment)
 
-    fun inject(mainActivity: MainActivity)
+// dont need component anymore
 
-    fun inject(starredFragment: StarredFragment)
-
-}
+//@Singleton
+//@Component(modules = [AppModule::class])
+//interface AppComponent {
+//    fun inject(notesFragment: NotesFragment)
+//
+//    fun inject(mainActivity: MainActivity)
+//
+//    fun inject(starredFragment: StarredFragment)
+//
+//}

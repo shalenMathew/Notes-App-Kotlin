@@ -7,20 +7,31 @@ import com.example.notesapp.room.NotesDao
 import com.example.notesapp.room.NotesDataBase
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+
+@InstallIn(SingletonComponent::class)
 @Module
-class AppModule(private val context:Context){
+class AppModule{
 
-    @Provides
-    @Singleton
-    fun providesApplication(): Application {
-        return context.applicationContext as Application
-    }
+    // a module should have empty constructor so that hilt can use it
+
+    // we don't need this method anymore as Hilt even creates Application context for us when its creating component and all that thing
+//    @Provides
+//    @Singleton
+//    fun providesApplication(@ApplicationContext context: Context): Application {
+//        return context.applicationContext as Application
+//    }
+
+    // return context will creates error as there are now duplicate context in hilt
 
     @Singleton
     @Provides
-    fun providesNotesDataBase():NotesDataBase{
+    // here @ApplicationContext provides the context that the hilt has created
+    fun providesNotesDataBase(@ApplicationContext context: Context):NotesDataBase{
         return NotesDataBase.getDataBaseInstance(context)
     }
 

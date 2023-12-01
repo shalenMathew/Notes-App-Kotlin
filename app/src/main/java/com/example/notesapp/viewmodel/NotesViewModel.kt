@@ -1,16 +1,18 @@
 package com.example.notesapp.viewmodel
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.notesapp.repository.NotesRepository
 import com.example.notesapp.room.NotesDataBase
 import com.example.notesapp.room.model.NotesModel
-import kotlinx.coroutines.CoroutineScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NotesViewModel(private val application: Application,private val notesRepository: NotesRepository)
+
+@HiltViewModel // --> creating factory
+class NotesViewModel @Inject constructor(private val application: Application,private val notesRepository: NotesRepository)
     :AndroidViewModel(application) {
 
 

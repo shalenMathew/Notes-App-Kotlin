@@ -12,10 +12,12 @@ import com.example.notesapp.databinding.ActivityMainBinding
 import com.example.notesapp.di.MyApplication
 import com.example.notesapp.room.model.NotesModel
 import com.example.notesapp.viewmodel.NotesViewModel
-import com.example.notesapp.viewmodel.NotesViewModelFactory
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
@@ -25,8 +27,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var notesViewModel: NotesViewModel
 
 
-    @Inject
-    lateinit var notesViewModelFactory: NotesViewModelFactory
+//    @Inject
+//    lateinit var notesViewModelFactory: NotesViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -36,19 +38,17 @@ class MainActivity : AppCompatActivity() {
 
         // Room + Mvvm + dependency injection + view binding + kotlin
 
-
-
 //        var notesDatabase = NotesDataBase.getDataBaseInstance(this)
 //        var notesDao  = notesDatabase.getNoteDao()
 //        var notesRepository = NotesRepository(notesDao)
 //        notesViewModelFactory = NotesViewModelFactory(getApplication(),notesRepository)
 
-        val application = applicationContext as MyApplication
+        // dagger im[pl
+//        val application = applicationContext as MyApplication
+//        application.appComponent.inject(this)
 
-        application.appComponent.inject(this)
-
-        notesViewModel = ViewModelProvider(this,notesViewModelFactory).get(NotesViewModel::class.java)
-
+        // hilt will create the factory no need to create one
+        notesViewModel = ViewModelProvider(this).get(NotesViewModel::class.java)
 
         val viewPagerAdapter = ViewPagerAdapter(this)
         binding.viewPager.adapter=viewPagerAdapter

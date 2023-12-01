@@ -16,10 +16,12 @@ import com.example.notesapp.repository.NotesRepository
 import com.example.notesapp.room.NotesDataBase
 import com.example.notesapp.room.model.NotesModel
 import com.example.notesapp.viewmodel.NotesViewModel
-import com.example.notesapp.viewmodel.NotesViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
+
 import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class StarredFragment : Fragment() {
 
 
@@ -27,8 +29,8 @@ class StarredFragment : Fragment() {
     lateinit var customAdapter: CustomAdapter
     lateinit var notesViewModel: NotesViewModel
 
-    @Inject
-    lateinit var notesViewModelFactory: NotesViewModelFactory
+//    @Inject
+//    lateinit var notesViewModelFactory: NotesViewModelFactory
 
   private lateinit  var starredList:ArrayList<NotesModel>
 
@@ -48,11 +50,11 @@ class StarredFragment : Fragment() {
 //
 //        notesViewModelFactory = NotesViewModelFactory(application,notesRepository)
 
-        val application = requireContext().applicationContext as MyApplication
+//        val application = requireContext().applicationContext as MyApplication
+//        application.appComponent.inject(this)
 
-        application.appComponent.inject(this)
 
-        notesViewModel = ViewModelProvider(this,notesViewModelFactory).get(NotesViewModel::class.java)
+        notesViewModel = ViewModelProvider(this).get(NotesViewModel::class.java)
 
         observeList()
 
