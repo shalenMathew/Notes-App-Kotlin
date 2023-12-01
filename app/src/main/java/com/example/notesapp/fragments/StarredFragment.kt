@@ -11,11 +11,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notesapp.adapter.CustomAdapter
 import com.example.notesapp.databinding.FragmentStarredBinding
+import com.example.notesapp.di.MyApplication
 import com.example.notesapp.repository.NotesRepository
 import com.example.notesapp.room.NotesDataBase
 import com.example.notesapp.room.model.NotesModel
 import com.example.notesapp.viewmodel.NotesViewModel
 import com.example.notesapp.viewmodel.NotesViewModelFactory
+import javax.inject.Inject
 
 
 class StarredFragment : Fragment() {
@@ -25,6 +27,7 @@ class StarredFragment : Fragment() {
     lateinit var customAdapter: CustomAdapter
     lateinit var notesViewModel: NotesViewModel
 
+    @Inject
     lateinit var notesViewModelFactory: NotesViewModelFactory
 
   private lateinit  var starredList:ArrayList<NotesModel>
@@ -38,13 +41,17 @@ class StarredFragment : Fragment() {
         binding = FragmentStarredBinding.inflate(inflater,container,false)
         starredList=ArrayList()
 
-        val application = requireContext().applicationContext as Application
+//        val application = requireContext().applicationContext as Application
+//        var notesDatabase = NotesDataBase.getDataBaseInstance(requireContext())
+//        var notesDao  = notesDatabase.getNoteDao()
+//        var notesRepository = NotesRepository(notesDao)
+//
+//        notesViewModelFactory = NotesViewModelFactory(application,notesRepository)
 
-        var notesDatabase = NotesDataBase.getDataBaseInstance(requireContext())
-        var notesDao  = notesDatabase.getNoteDao()
-        var notesRepository = NotesRepository(notesDao)
+        val application = requireContext().applicationContext as MyApplication
 
-        notesViewModelFactory = NotesViewModelFactory(application,notesRepository)
+        application.appComponent.inject(this)
+
         notesViewModel = ViewModelProvider(this,notesViewModelFactory).get(NotesViewModel::class.java)
 
         observeList()

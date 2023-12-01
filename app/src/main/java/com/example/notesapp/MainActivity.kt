@@ -1,7 +1,6 @@
 package com.example.notesapp
 
 import android.app.Activity
-import android.app.Application
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,12 +9,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import com.example.notesapp.adapter.ViewPagerAdapter
 import com.example.notesapp.databinding.ActivityMainBinding
-import com.example.notesapp.repository.NotesRepository
-import com.example.notesapp.room.NotesDataBase
+import com.example.notesapp.di.MyApplication
 import com.example.notesapp.room.model.NotesModel
 import com.example.notesapp.viewmodel.NotesViewModel
 import com.example.notesapp.viewmodel.NotesViewModelFactory
 import com.google.android.material.tabs.TabLayoutMediator
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,6 +24,8 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var notesViewModel: NotesViewModel
 
+
+    @Inject
     lateinit var notesViewModelFactory: NotesViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,14 +34,19 @@ class MainActivity : AppCompatActivity() {
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Room + Mvvm + dependency injection + view binding + kotlin _ clean architecture
-
-        var notesDatabase = NotesDataBase.getDataBaseInstance(this)
-        var notesDao  = notesDatabase.getNoteDao()
-        var notesRepository = NotesRepository(notesDao)
+        // Room + Mvvm + dependency injection + view binding + kotlin
 
 
-        notesViewModelFactory = NotesViewModelFactory(getApplication(),notesRepository)
+
+//        var notesDatabase = NotesDataBase.getDataBaseInstance(this)
+//        var notesDao  = notesDatabase.getNoteDao()
+//        var notesRepository = NotesRepository(notesDao)
+//        notesViewModelFactory = NotesViewModelFactory(getApplication(),notesRepository)
+
+        val application = applicationContext as MyApplication
+
+        application.appComponent.inject(this)
+
         notesViewModel = ViewModelProvider(this,notesViewModelFactory).get(NotesViewModel::class.java)
 
 
