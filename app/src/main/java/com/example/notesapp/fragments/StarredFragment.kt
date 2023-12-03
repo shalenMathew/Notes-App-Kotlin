@@ -59,7 +59,7 @@ class StarredFragment : Fragment() {
         observeList()
 
         binding.starredRv.layoutManager = LinearLayoutManager(context)
-        customAdapter = CustomAdapter(requireContext(),notesViewModel)
+        customAdapter = CustomAdapter(requireActivity(),notesViewModel)
         binding.starredRv.adapter=customAdapter
 
         return  binding.root

@@ -82,7 +82,7 @@ class NotesFragment : Fragment() {
 
     private fun configureRecycleView() {
         binding.notesRv.layoutManager = LinearLayoutManager(context)
-        customAdapter = CustomAdapter(requireContext(),notesViewModel)
+        customAdapter = CustomAdapter(requireActivity(),notesViewModel)
         binding.notesRv.adapter= customAdapter
     }
 

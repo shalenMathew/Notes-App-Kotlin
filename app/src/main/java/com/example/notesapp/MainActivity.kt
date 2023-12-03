@@ -65,9 +65,6 @@ class MainActivity : AppCompatActivity() {
             noteActionLauncher.launch(i)
         }
 
-
-
-
     }
 
     val noteActionLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
@@ -102,6 +99,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 

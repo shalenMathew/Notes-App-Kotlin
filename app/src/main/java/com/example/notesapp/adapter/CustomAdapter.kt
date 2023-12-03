@@ -1,5 +1,6 @@
 package com.example.notesapp.adapter
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -16,8 +17,10 @@ import com.example.notesapp.databinding.CardItemBinding
 import com.example.notesapp.databinding.CardItemWithImgBinding
 import com.example.notesapp.room.model.NotesModel
 import com.example.notesapp.viewmodel.NotesViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
-class CustomAdapter(private val context: Context,private val notesViewModel: NotesViewModel): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CustomAdapter (private val  activity: Activity, private val notesViewModel: NotesViewModel): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val LAYOUT_ITEM_WITH_IMG = 0
 
@@ -64,7 +67,7 @@ class CustomAdapter(private val context: Context,private val notesViewModel: Not
              val viewHolderWithImg = holder as ViewHolderWithImg
              viewHolderWithImg.binding.cardItemImgTitle.text = notesModel.title
              viewHolderWithImg.binding.cardItemImgDescription.text = notesModel.description
-             Glide.with(context).load(notesModel.img).into(viewHolderWithImg.binding.cardItemImg)
+             Glide.with(activity.applicationContext).load(notesModel.img).into(viewHolderWithImg.binding.cardItemImg)
 
 
              viewHolderWithImg.binding.cardItemImgStar.setOnClickListener(){
@@ -115,9 +118,10 @@ class CustomAdapter(private val context: Context,private val notesViewModel: Not
 
         holder.itemView.setOnClickListener(){
             var selectedNote = list[position]
-            val i = Intent(context,UpdateActivity::class.java)
+            val i = Intent(activity,UpdateActivity::class.java)
             i.putExtra("note",selectedNote)
-            (context as MainActivity).startActivityForResult(i, 49)
+//            (context as MainActivity).startActivityForResult(i, 49)
+            (activity as MainActivity).startActivityForResult(i, 49)
         }
 
        holder.itemView.setOnLongClickListener(){
@@ -132,7 +136,7 @@ class CustomAdapter(private val context: Context,private val notesViewModel: Not
 
     private fun deleteDialogBox(position: Int) {
 
-       val alert = AlertDialog.Builder(context)
+       val alert = AlertDialog.Builder(activity)
 
         alert.setTitle("Delete note!!!")
         alert.setMessage("Do u want to delete the Note ?")

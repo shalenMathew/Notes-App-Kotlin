@@ -47,28 +47,6 @@
         android:layout_marginBottom="@dimen/_20mdp"
         android:maxLines="3"/>
 
-    <ImageView
-        android:id="@+id/activity_add_note_true"
-        android:layout_width="@dimen/_40mdp"
-        android:layout_height="@dimen/_40mdp"
-        android:layout_marginEnd="@dimen/_20mdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/right"
-        android:layout_marginBottom="@dimen/_15mdp"
-        />
-
-    <ImageView
-        android:id="@+id/activity_add_note_false"
-        android:layout_width="@dimen/_40mdp"
-        android:layout_height="@dimen/_40mdp"
-        android:layout_marginEnd="@dimen/_30mdp"
-        android:layout_marginBottom="@dimen/_15mdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/activity_add_note_true"
-        app:layout_constraintTop_toTopOf="@+id/activity_add_note_true"
-        app:srcCompat="@drawable/wrong" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="@dimen/_250mdp"
@@ -107,6 +85,30 @@
             app:tint="@color/brand_color" />
 
     </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/activity_add_note_true"
+        android:layout_width="@dimen/_40mdp"
+        android:layout_height="@dimen/_40mdp"
+        android:layout_marginEnd="@dimen/_20mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/right"
+        android:layout_marginBottom="@dimen/_15mdp"
+        />
+
+    <ImageView
+        android:id="@+id/activity_add_note_false"
+        android:layout_width="@dimen/_40mdp"
+        android:layout_height="@dimen/_40mdp"
+        android:layout_marginEnd="@dimen/_30mdp"
+        android:layout_marginBottom="@dimen/_15mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/activity_add_note_true"
+        app:layout_constraintTop_toTopOf="@+id/activity_add_note_true"
+        app:srcCompat="@drawable/wrong" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
