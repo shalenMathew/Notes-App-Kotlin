@@ -27,7 +27,7 @@ data class NotesModel(
 var img:String?=null,
 
 @ColumnInfo("notes_starred")
-     var isStarred:Boolean?
+     var isStarred:Boolean=false
 ) : Parcelable{
 
 

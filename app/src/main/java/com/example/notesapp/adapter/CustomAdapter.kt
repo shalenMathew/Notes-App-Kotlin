@@ -28,7 +28,6 @@ class CustomAdapter (private val  activity: Activity, private val notesViewModel
 
     private var list: ArrayList<NotesModel> = ArrayList()
 
-
     fun setNotes(newData:ArrayList<NotesModel>){
         list.clear() // Clear the existing list
         list = newData
@@ -69,10 +68,18 @@ class CustomAdapter (private val  activity: Activity, private val notesViewModel
              viewHolderWithImg.binding.cardItemImgDescription.text = notesModel.description
              Glide.with(activity.applicationContext).load(notesModel.img).into(viewHolderWithImg.binding.cardItemImg)
 
+             val checkingIsStarred = notesModel.isStarred
+
+             if (checkingIsStarred) {
+                 viewHolderWithImg.binding.cardItemImgStar.setImageResource(R.drawable.star)
+             } else {
+                 viewHolderWithImg.binding.cardItemImgStar.setImageResource(R.drawable.star_outline)
+             }
+
 
              viewHolderWithImg.binding.cardItemImgStar.setOnClickListener(){
 
-                 val starSelected = !notesModel.isStarred!!
+                 val starSelected = !notesModel.isStarred
                  notesModel.isStarred=starSelected
 
                  notesViewModel.updateNote(notesModel)
@@ -93,10 +100,18 @@ class CustomAdapter (private val  activity: Activity, private val notesViewModel
              viewHolderWithoutImg.binding.cardItemTitle.text = notesModel.title
              viewHolderWithoutImg.binding.cardItemDescription.text = notesModel.description
 
+             val checkingIsStarred = notesModel.isStarred
+
+             if (checkingIsStarred) {
+                 viewHolderWithoutImg.binding.cardItemStar.setImageResource(R.drawable.star)
+             } else {
+                 viewHolderWithoutImg.binding.cardItemStar.setImageResource(R.drawable.star_outline)
+             }
+
 
              viewHolderWithoutImg.binding.cardItemStar.setOnClickListener(){
 
-                 val starSelected = !notesModel.isStarred!!
+                 val starSelected = !notesModel.isStarred
                  notesModel.isStarred=starSelected
 
                  notesViewModel.updateNote(notesModel)
@@ -117,6 +132,7 @@ class CustomAdapter (private val  activity: Activity, private val notesViewModel
      }
 
         holder.itemView.setOnClickListener(){
+
             var selectedNote = list[position]
             val i = Intent(activity,UpdateActivity::class.java)
             i.putExtra("note",selectedNote)
@@ -147,9 +163,7 @@ class CustomAdapter (private val  activity: Activity, private val notesViewModel
         }
 
         alert.setNegativeButton("No",null)
-
         alert.create().show()
-
     }
 
     private fun deleteNote(position: Int) {
@@ -167,6 +181,8 @@ class CustomAdapter (private val  activity: Activity, private val notesViewModel
         init {
             binding = CardItemBinding.bind(itemView)
         }
+
+
     }
 
     public class ViewHolderWithImg(itemView: View) : RecyclerView.ViewHolder(itemView){

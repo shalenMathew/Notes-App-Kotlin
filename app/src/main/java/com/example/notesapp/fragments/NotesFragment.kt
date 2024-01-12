@@ -31,15 +31,12 @@ class NotesFragment : Fragment() {
 //    @Inject
 //    lateinit var notesViewModelFactory: NotesViewModelFactory
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         binding = FragmentNotesBinding.inflate(inflater,container,false)
-
-
 
 //        var notesDatabase = NotesDataBase.getDataBaseInstance(requireContext())
 //        var notesDao  = notesDatabase.getNoteDao()
@@ -71,10 +68,8 @@ class NotesFragment : Fragment() {
 
             // by default our observed list will be stored in variable named 'it'
             // we can change the name of it using 'urListName ->'
-
             val notesArrayList = ArrayList(notesList)
             customAdapter.setNotes(notesArrayList)
-
         }
     }
 

@@ -73,7 +73,7 @@ class StarredFragment : Fragment() {
 
             for(notesModelObj in notesList){
 //
-                if(notesModelObj.isStarred==true){
+                if(notesModelObj.isStarred){
                     starredList.add(notesModelObj)
                 }
             }
