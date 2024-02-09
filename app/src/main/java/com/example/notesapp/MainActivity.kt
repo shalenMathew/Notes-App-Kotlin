@@ -16,7 +16,7 @@ import com.example.notesapp.viewmodel.NotesViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
-// Adding back up feature hope everything works fine
+// this backup and restore branch
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
     private val titleTab = arrayOf("Notes","Starred")
 
     lateinit var notesViewModel: NotesViewModel
-
 
 //    @Inject
 //    lateinit var notesViewModelFactory: NotesViewModelFactory
