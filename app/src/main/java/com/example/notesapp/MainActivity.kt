@@ -18,6 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 // Adding back up feature hope everything works fine
 // this is main branch
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -37,7 +38,6 @@ class MainActivity : AppCompatActivity() {
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        toolBarSetUp()
         // Room + Mvvm + dependency injection + view binding + kotlin
 
 //        var notesDatabase = NotesDataBase.getDataBaseInstance(this)
@@ -62,16 +62,13 @@ class MainActivity : AppCompatActivity() {
         }.attach()
 
 
-//        binding.addButton.setOnClickListener(){
-//            val i = Intent(this,AddNoteActivity::class.java)
-//            noteActionLauncher.launch(i)
-//        }
+        binding.addButton.setOnClickListener(){
+            val i = Intent(this,AddNoteActivity::class.java)
+            noteActionLauncher.launch(i)
+        }
 
     }
-    private fun toolBarSetUp() {
-        setSupportActionBar(binding.mainToolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-    }
+
 
     val noteActionLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result ->
@@ -99,30 +96,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.backup_restore,menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.backUp ->{
-                Toast.makeText(this, "backup", Toast.LENGTH_SHORT).show()
-            }
-
-            R.id.restore->{
-                Toast.makeText(this, "restore", Toast.LENGTH_SHORT).show()
-            }
-
-            R.id.add_note->{
-            val i = Intent(this,AddNoteActivity::class.java)
-           noteActionLauncher.launch(i)
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

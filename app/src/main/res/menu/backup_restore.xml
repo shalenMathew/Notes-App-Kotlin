@@ -8,18 +8,4 @@
         android:icon="@drawable/add"
         app:showAsAction="ifRoom"
         />
-
-    <item
-        android:title="Backup"
-        android:id="@+id/backUp"
-        app:showAsAction="never"
-        />
-
-    <item
-        android:title="Restore"
-        android:id="@+id/restore"
-        app:showAsAction="never"
-        />
-
-
 </menu>
