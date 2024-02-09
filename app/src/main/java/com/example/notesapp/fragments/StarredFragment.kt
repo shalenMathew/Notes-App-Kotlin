@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.notesapp.adapter.CustomAdapter
 import com.example.notesapp.databinding.FragmentStarredBinding
 import com.example.notesapp.di.MyApplication
@@ -61,7 +63,6 @@ class StarredFragment : Fragment() {
         binding.starredRv.layoutManager = LinearLayoutManager(context)
         customAdapter = CustomAdapter(requireActivity(),notesViewModel)
         binding.starredRv.adapter=customAdapter
-
         return  binding.root
     }
 
@@ -72,7 +73,7 @@ class StarredFragment : Fragment() {
             starredList.clear()
 
             for(notesModelObj in notesList){
-//
+
                 if(notesModelObj.isStarred){
                     starredList.add(notesModelObj)
                 }

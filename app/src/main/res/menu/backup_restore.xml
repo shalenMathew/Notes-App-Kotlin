@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/add_note"
+        android:title="Add"
+        android:icon="@drawable/add"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:title="Backup"
+        android:id="@+id/backUp"
+        app:showAsAction="never"
+        />
+
+    <item
+        android:title="Restore"
+        android:id="@+id/restore"
+        app:showAsAction="never"
+        />
+
+
+</menu>

@@ -7,7 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.ItemTouchHelper.DOWN
+import androidx.recyclerview.widget.ItemTouchHelper.END
+import androidx.recyclerview.widget.ItemTouchHelper.START
+import androidx.recyclerview.widget.ItemTouchHelper.UP
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.notesapp.R
 import com.example.notesapp.adapter.CustomAdapter
 import com.example.notesapp.databinding.FragmentNotesBinding
@@ -58,6 +64,8 @@ class NotesFragment : Fragment() {
         configureRecycleView()
         observeData()
 
+
+
         return binding.root
     }
 
@@ -80,5 +88,6 @@ class NotesFragment : Fragment() {
         customAdapter = CustomAdapter(requireActivity(),notesViewModel)
         binding.notesRv.adapter= customAdapter
     }
+
 
 }

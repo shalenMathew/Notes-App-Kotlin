@@ -10,6 +10,13 @@ plugins {
 }
 
 android {
+
+    packaging {
+        resources {
+            excludes += "META-INF/DEPENDENCIES"
+            // Add any other files that need to be excluded
+        }
+    }
     namespace = "com.example.notesapp"
     compileSdk = 34
 
@@ -82,5 +89,13 @@ dependencies {
 
     implementation("com.google.dagger:hilt-android:2.48.1")
     kapt("com.google.dagger:hilt-android-compiler:2.48.1")
+
+    implementation ("com.google.android.gms:play-services-auth:20.7.0")
+
+
+    implementation ("com.google.android.gms:play-services-auth:20.7.0")
+    implementation ("com.google.http-client:google-http-client-gson:1.42.3")
+    implementation ("com.google.api-client:google-api-client-android:1.34.0")
+    implementation ("com.google.apis:google-api-services-drive:v3-rev136-1.25.0")
 
 }

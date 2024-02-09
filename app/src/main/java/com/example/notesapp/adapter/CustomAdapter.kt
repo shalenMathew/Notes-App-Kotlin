@@ -124,11 +124,8 @@ class CustomAdapter (private val  activity: Activity, private val notesViewModel
                  }
 
                  notifyDataSetChanged()
-
              }
-
          }
-
      }
 
         holder.itemView.setOnClickListener(){
@@ -181,8 +178,6 @@ class CustomAdapter (private val  activity: Activity, private val notesViewModel
         init {
             binding = CardItemBinding.bind(itemView)
         }
-
-
     }
 
     public class ViewHolderWithImg(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -192,9 +187,6 @@ class CustomAdapter (private val  activity: Activity, private val notesViewModel
         init {
             binding= CardItemWithImgBinding.bind(itemView)
         }
-
-
-
     }
 
     override fun getItemViewType(position: Int): Int {

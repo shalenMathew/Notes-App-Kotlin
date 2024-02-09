@@ -4,17 +4,17 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import com.example.notesapp.adapter.ViewPagerAdapter
 import com.example.notesapp.databinding.ActivityMainBinding
-import com.example.notesapp.di.MyApplication
 import com.example.notesapp.room.model.NotesModel
 import com.example.notesapp.viewmodel.NotesViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        toolBarSetUp()
         // Room + Mvvm + dependency injection + view binding + kotlin
 
 //        var notesDatabase = NotesDataBase.getDataBaseInstance(this)
@@ -60,11 +61,15 @@ class MainActivity : AppCompatActivity() {
         }.attach()
 
 
-        binding.addButton.setOnClickListener(){
-            val i = Intent(this,AddNoteActivity::class.java)
-            noteActionLauncher.launch(i)
-        }
+//        binding.addButton.setOnClickListener(){
+//            val i = Intent(this,AddNoteActivity::class.java)
+//            noteActionLauncher.launch(i)
+//        }
 
+    }
+    private fun toolBarSetUp() {
+        setSupportActionBar(binding.mainToolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
     val noteActionLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
@@ -89,14 +94,32 @@ class MainActivity : AppCompatActivity() {
                         notesViewModel.insertNote(notesModel)
                         Toast.makeText(this, "Data inserted successfully", Toast.LENGTH_SHORT).show()
                     }
-
                 }
+            }
+        }
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.backup_restore,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.backUp ->{
+                Toast.makeText(this, "backup", Toast.LENGTH_SHORT).show()
             }
 
-        }
+            R.id.restore->{
+                Toast.makeText(this, "restore", Toast.LENGTH_SHORT).show()
+            }
 
+            R.id.add_note->{
+            val i = Intent(this,AddNoteActivity::class.java)
+           noteActionLauncher.launch(i)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     @Deprecated("Deprecated in Java")
@@ -107,11 +130,9 @@ if(requestCode==49 && data!=null){
 
     val updatedNotes:NotesModel? = data.getParcelableExtra("updatedNote")
     notesViewModel.updateNote(updatedNotes!!)
-
 }
 
     }
-
 
 
 }
