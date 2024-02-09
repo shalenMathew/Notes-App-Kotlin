@@ -16,9 +16,8 @@ import com.example.notesapp.viewmodel.NotesViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
-// Adding back up feature hope everything works fine
 // this is main branch
-
+// everything in this branch is over its working fine
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
