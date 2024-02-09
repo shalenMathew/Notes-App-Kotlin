@@ -16,7 +16,7 @@ import com.example.notesapp.viewmodel.NotesViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
-
+// Adding back up feature hope everything works fine
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -133,6 +133,4 @@ if(requestCode==49 && data!=null){
 }
 
     }
-
-
 }
