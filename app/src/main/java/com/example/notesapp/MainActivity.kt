@@ -17,6 +17,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
 // Adding back up feature hope everything works fine
+// this is main branch
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
