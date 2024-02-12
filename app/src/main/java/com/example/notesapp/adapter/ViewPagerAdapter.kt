@@ -16,11 +16,11 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity):FragmentStateAdapter(
 
     override fun createFragment(position: Int): Fragment {
 
-        return when(position){
-            0-> NotesFragment()
-            1-> StarredFragment()
-            else ->NotesFragment()
+         when(position){
+            0-> return NotesFragment()
+            1-> return StarredFragment()
         }
+        return NotesFragment()
     }
 
 
