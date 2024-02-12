@@ -19,7 +19,7 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity):FragmentStateAdapter(
         return when(position){
             0-> NotesFragment()
             1-> StarredFragment()
-            else -> StarredFragment()
+            else ->NotesFragment()
         }
     }
 
