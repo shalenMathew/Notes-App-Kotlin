@@ -8,8 +8,6 @@ import com.example.notesapp.fragments.StarredFragment
 
 class ViewPagerAdapter(fragmentActivity: FragmentActivity):FragmentStateAdapter(fragmentActivity) {
 
-
-
     override fun getItemCount(): Int {
  return  2
     }
@@ -19,7 +17,7 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity):FragmentStateAdapter(
         return when(position){
             0-> NotesFragment()
             1-> StarredFragment()
-            else -> StarredFragment()
+            else -> NotesFragment()
         }
     }
 

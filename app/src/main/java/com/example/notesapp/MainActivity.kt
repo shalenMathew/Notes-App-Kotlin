@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
         val viewPagerAdapter = ViewPagerAdapter(this)
         binding.viewPager.adapter=viewPagerAdapter
 
-        binding.viewPager.currentItem = 1
+        binding.viewPager.currentItem = 0
 
         TabLayoutMediator(binding.tabLayout,binding.viewPager) { tab, position ->
             tab.text = titleTab[position]
