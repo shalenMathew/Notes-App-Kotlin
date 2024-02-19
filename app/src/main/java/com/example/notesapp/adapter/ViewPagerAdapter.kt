@@ -20,4 +20,5 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity):FragmentStateAdapter(
         }
         return NotesFragment()
     }
+    //
 }

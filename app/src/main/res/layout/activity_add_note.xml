@@ -10,6 +10,7 @@
 
 
     <EditText
+        android:textColor="@color/black"
         android:id="@+id/activity_add_note_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,6 +28,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
+        android:textColor="@color/black"
         android:id="@+id/activity_add_note_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,10 +58,12 @@
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_add_note_description">
+        app:layout_constraintTop_toBottomOf="@+id/activity_add_note_description"
+        >
 
 
         <LinearLayout
+            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

@@ -1,7 +1,10 @@
 package com.example.notesapp
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings.Global
@@ -10,6 +13,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.notesapp.adapter.CustomAdapter
@@ -45,6 +50,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
 
+    private val EXTERNAL_STORAGE_REQUSET_CODE = 100
+
 //    @Inject
 //    lateinit var notesViewModelFactory: NotesViewModelFactory
 
@@ -64,6 +71,11 @@ class MainActivity : AppCompatActivity() {
         signIn()
 
         toolBarSetUp()
+
+        if(!isPermissionGranted()){
+            requestPermission()
+        }
+
 
         // Room + Mvvm + dependency injection + view binding + kotlin
 
@@ -169,6 +181,7 @@ if(requestCode==49 && data!=null){
     val updatedNotes:NotesModel? = data.getParcelableExtra("updatedNote")
     notesViewModel.updateNote(updatedNotes!!)
 }else if (requestCode == RC_SIGN_IN) {
+
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
 
             try {
@@ -183,6 +196,36 @@ if(requestCode==49 && data!=null){
     companion object {
         private const val RC_SIGN_IN = 9001
         private const val TAG = "MainActivity"
+    }
+
+    private fun requestPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_MEDIA_IMAGES),
+                EXTERNAL_STORAGE_REQUSET_CODE
+            )
+        } else {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                EXTERNAL_STORAGE_REQUSET_CODE
+            )
+        }
+    }
+
+    private fun isPermissionGranted(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_MEDIA_IMAGES
+            ) == PackageManager.PERMISSION_GRANTED
+        } else {
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
+        }
     }
 
 }

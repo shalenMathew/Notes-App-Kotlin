@@ -26,9 +26,6 @@ class AddNoteActivity : AppCompatActivity() {
     private val EXTERNAL_STORAGE_REQUSET_CODE = 100
 
     lateinit var galleryLauncher:ActivityResultLauncher<Intent>
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddNoteBinding.inflate(layoutInflater)

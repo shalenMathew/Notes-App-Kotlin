@@ -85,6 +85,7 @@ class DatabaseBackup(private val context:Context){
         } catch (e: Exception) {
             e.printStackTrace()
         }
+
     }
     suspend fun download() {
 
@@ -142,9 +143,8 @@ class DatabaseBackup(private val context:Context){
 
 
     fun googleSignIn(account: GoogleSignInAccount) {
-        val credential = GoogleAccountCredential.usingOAuth2(
-            context, setOf(Scopes.DRIVE_FILE)
-        )
+        val credential = GoogleAccountCredential.usingOAuth2(context, setOf(Scopes.DRIVE_FILE))
+
         credential.selectedAccount = account.account
          googleDriveService = Drive.Builder(
             NetHttpTransport(),

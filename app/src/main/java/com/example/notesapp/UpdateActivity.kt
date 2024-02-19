@@ -1,5 +1,6 @@
 package com.example.notesapp
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -21,7 +22,7 @@ class UpdateActivity : AppCompatActivity() {
 
     var notesModel:NotesModel? = null
 
-    lateinit var galleryLauncher: ActivityResultLauncher<String>
+    lateinit var galleryLauncher:ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,24 +60,22 @@ class UpdateActivity : AppCompatActivity() {
             openGallery()
         }
 
-        galleryLauncher=registerForActivityResult(ActivityResultContracts.GetContent()){
-                result->
+        galleryLauncher=registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
 
-            binding.activityUpdateImg.setImageURI(result)
+                result ->
 
-            if (result != null) {
-                imgUri=result
+            if (result.resultCode == Activity.RESULT_OK) {
+                result.data?.data?.also { uri ->
+                    contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    binding.activityUpdateImg.setImageURI(uri)
+                    imgUri = uri
+                }
             }
-
         }
 
         binding.activityUpdateAdd.setOnClickListener(){
-
             var updatedNotes = notesModel
-
-
             if(!TextUtils.isEmpty(binding.activityUpdateTitle.text)  && (!TextUtils.isEmpty(binding.activityUpdateDescription.text))){
-
                if(updatedNotes!=null){
 
                    updatedNotes.title =  binding.activityUpdateTitle.text.toString()
@@ -96,9 +95,6 @@ class UpdateActivity : AppCompatActivity() {
                }else{
                    Toast.makeText(this, "The updatedNotes is empty", Toast.LENGTH_SHORT).show()
                }
-
-
-
             }
             else{
                 Toast.makeText(this, "fields are empty", Toast.LENGTH_SHORT).show()
@@ -106,7 +102,11 @@ class UpdateActivity : AppCompatActivity() {
         }
     }
 
-    private fun openGallery() {
-        galleryLauncher.launch("image/*")
+    private fun openGallery(){
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
+            type = "image/*"
+        }
+        galleryLauncher.launch(intent)
     }
 }

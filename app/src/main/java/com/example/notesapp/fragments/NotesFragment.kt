@@ -69,8 +69,6 @@ class NotesFragment : Fragment() {
         return binding.root
     }
 
-
-
     private fun observeData() {
         notesViewModel.getAllNotes().observe(viewLifecycleOwner) { notesList->
 
@@ -81,13 +79,10 @@ class NotesFragment : Fragment() {
         }
     }
 
-
-
     private fun configureRecycleView() {
         binding.notesRv.layoutManager = LinearLayoutManager(context)
         customAdapter = CustomAdapter(requireActivity(),notesViewModel)
         binding.notesRv.adapter= customAdapter
     }
-
 
 }
