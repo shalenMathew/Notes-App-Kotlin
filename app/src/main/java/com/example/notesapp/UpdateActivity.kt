@@ -60,10 +60,7 @@ class UpdateActivity : AppCompatActivity() {
             openGallery()
         }
 
-        galleryLauncher=registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-
-                result ->
-
+        galleryLauncher=registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 result.data?.data?.also { uri ->
                     contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION)
