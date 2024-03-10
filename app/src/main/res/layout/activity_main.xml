@@ -19,21 +19,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20mdp"
-            android:layout_marginTop="@dimen/_12mdp"
-            android:fontFamily="sans-serif-light"
-            android:lineSpacingExtra="20dp"
-            android:text="My Notes"
-            android:textColor="@color/brand_color"
-            android:textSize="30dp"
-            android:textStyle="bold"
+        <ImageView
+            android:layout_marginTop="@dimen/_6mdp"
+            android:id="@+id/logo"
+            android:layout_width="@dimen/_90mdp"
+            android:layout_height="@dimen/_50mdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
@@ -43,7 +38,7 @@
             android:layout_marginTop="@dimen/_30mdp"
             android:background="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/logo"
             app:tabGravity="center"
             app:tabIndicator="@drawable/tab_indicator"
             app:tabIndicatorAnimationMode="elastic"
