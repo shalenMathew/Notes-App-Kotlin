@@ -1,13 +1,16 @@
 package com.example.notesapp
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.notesapp.adapter.ViewPagerAdapter
 import com.example.notesapp.databinding.ActivityMainBinding
@@ -27,6 +30,8 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var notesViewModel: NotesViewModel
 
+    private val EXTERNAL_STORAGE_REQUSET_CODE = 100
+
 
 //    @Inject
 //    lateinit var notesViewModelFactory: NotesViewModelFactory
@@ -36,6 +41,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        if(!isPermissionGranted()){
+            requestPermission()
+        }
 
         // Room + Mvvm + dependency injection + view binding + kotlin
 
@@ -107,5 +117,34 @@ if(requestCode==49 && data!=null){
 
     }
 
+    private fun requestPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_MEDIA_IMAGES),
+                EXTERNAL_STORAGE_REQUSET_CODE
+            )
+        } else {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                EXTERNAL_STORAGE_REQUSET_CODE
+            )
+        }
+    }
+
+    private fun isPermissionGranted(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_MEDIA_IMAGES
+            ) == PackageManager.PERMISSION_GRANTED
+        } else {
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
+        }
+    }
     
 }
